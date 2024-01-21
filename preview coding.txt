@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview</title>
+    
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        *{
+            background-color: white;
+            color: black;
+        }
+        .logo {
+			float: left;
+			margin-right: 20px;
+		}
+        .logo1 {
+			float: right;
+			margin-left: 20px;
+		}
+		.logo img {
+			max-width: 100px;
+			height: auto;
+		}
+		.logo1 img {
+			max-width: 100px;
+			height: auto;
+		}
+        .title {
+			margin-top: 30px;
+			text-align: center;
+		}
+		.title h1 {
+			font-size: 24px;
+			margin-bottom: 5px;
+		}
+        .subtitle {
+			margin-top: 5px;
+			text-align: center;
+			font-size: 16px;
+		}
+        hr{
+            background-color: black;
+            padding-bottom: 3px;
+        }
+        h4{
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="kop-surat">
+            <div class="logo">
+                <img src="../../img/logo_st.fransiskus.png" alt="Logo">
+            </div>
+            <div class="logo1">
+                <img src="../../img/logo_keuskupan.png" alt="Logo">
+            </div>
+            <div class="title text-uppercase">
+                <h1>Keuskupan Agung Medan</h1>
+                <h1>Paroki St. Fransiskus Asisi Padang Bulan Medan</h1>
+            </div>
+            <div class="subtitle">
+                Jl. Bunga Ester No. 93B, Padang Bulan Selayang II, Kec. Medan Selayang, Padang Bulan Medan - 20131 <br>
+                Telp. Kantor Sekretariat : 061-8214761 Email: sanfrancis.padangbulanmedan@gmail.com
+            </div>
+        </div>
+        <hr>
+        <h4>
+            Daftar Lingkungan pada Setiap Stasi
+        </h4>
+    <div class="table-responsive">
+        <table id="table1" class="table table-bordered" style="width:100%">
+            <thead class="table-secondary">
+                <tr class="text-center fw-bold">
+                    <td>No</td>
+                    <td>Nama Lingkungan</td>
+                    <td>Nama Wilayah / Stasi</td>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                $no = 1;
+                $data = mysqli_query($koneksi,"SELECT * from lingkungan inner join stasi where lingkungan.id_stasi = stasi.id_stasi order by nama_stasi asc");		
+                while($d=mysqli_fetch_array($data)){
+                    ?>
+                <tr>
+                    <td class="text-center"><?php echo $no++; ?></td>
+                    <td><?php echo $d['nama_lingkungan'] ?></td>
+                    <td><?php echo $d['nama_stasi'] ?></td>
+                </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+    <!-- datatables -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
